@@ -1,25 +1,25 @@
-<script>
-    function hasGetUserMedia() {
-      return !!(navigator.mediaDevices &&
-        navigator.mediaDevices.getUserMedia);
-    }
-    
-    if (hasGetUserMedia()) {
-      // Good to go!
-    } else {
-      alert('getUserMedia() is not supported by your browser');
-    }
-    </script>
-    
-    <video autoplay></video>
-    
-    <script>
-    const constraints = {
-      video: true
-    };
-    
-    const video = document.querySelector('video');
-    
-    navigator.mediaDevices.getUserMedia(constraints).
-      then((stream) => {video.srcObject = stream});
-    </script>
+<!DOCTYPE html>
+<meta charset="utf-8">
+<base target="_blank">
+
+
+<title>Camera Test</title>
+
+</head>
+
+<body>
+
+<div id="container">
+
+  <div class="select">
+    <label for="videoSource">Video source: </label><select id="videoSource"></select>
+  </div>
+
+  <video autoplay muted playsinline></video>
+
+  <script async src="js/main.js"></script>
+
+</div>
+
+</body>
+</html>
