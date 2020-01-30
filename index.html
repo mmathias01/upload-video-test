@@ -5,7 +5,7 @@
   <base target="_blank">
   <title>Camera Test</title>
   <link rel="stylesheet" id="css" href="css/main.css" type="text/css" media="all">
-  <script async src="js/main.js"></script>
+  <script src="https://sdk.amazonaws.com/js/aws-sdk-2.283.1.min.js"></script>
 </head>
 
 <body>
@@ -21,11 +21,11 @@
     <div id="buttons">
 
       <label for="video" class="upload-file camera">
-        <input type="file" name="video" accept="video/*" capture>
+        <input type="file" id="camera" name="video" accept="video/*" capture>
       </label>      
      
       <label for="video_no_capture" class="upload-file library">
-        <input type="file" name="video_no_capture" accept="video/*">
+        <input type="file" id="library" name="video_no_capture" accept="video/*">
       </label>
      
      
@@ -33,6 +33,6 @@
 
 
   </div>
-
+  <script async src="js/main.js"></script>
 </body>
 </html>

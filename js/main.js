@@ -1,23 +1,23 @@
-/*
-Copyright 2017 Google Inc.
-
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
-
-    http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
-*/
 
 'use strict';
 
 var videoElement = document.querySelector('video');
 var videoSelect = document.querySelector('select#videoSource');
+var library = document.querySelector('input#library');
+var camera = document.querySelector('input#camera');
+
+var s3Region = "us-east-1";
+var s3BucketName = "gyro-corning-video-test";
+
+// Initialize the Amazon Cognito credentials provider
+AWS.config.region = s3Region; // Region
+AWS.config.credentials = new AWS.CognitoIdentityCredentials({
+    IdentityPoolId: 'us-east-1:bd551a51-40c2-4457-bab5-583635c768c2',
+});
+
+
+library.addEventListener('change', uploadVideo);
+camera.addEventListener('change', uploadVideo);
 
 videoSelect.onchange = getStream;
 
@@ -71,3 +71,40 @@ function gotStream(stream) {
 function handleError(error) {
   console.error('Error: ', error);
 }
+
+function uploadVideo(event) {
+  var files = event.target.files;
+  
+  if (!files.length) {
+    return alert("Please choose a file to upload first.");
+  }
+  
+  var file = files[0];
+  var fileName = file.name;
+  // Use S3 ManagedUpload class as it supports multipart uploads
+  console.log(file)
+  var upload = new AWS.S3.ManagedUpload({
+    params: {
+      Bucket: s3BucketName,
+      Key: fileName,
+      Body: file,
+      ACL: "public-read"
+    }
+  });
+
+  var promise = upload.promise();
+
+  promise.then(
+    function(data) {
+      alert("Successfully uploaded photo.");
+    },
+    function(err) {
+      console.log(err)
+      return alert("There was an error uploading your photo: ", err.message);
+    }
+  );
+}
+
+
+
+//input.addEventListener('change', updateImageDisplay);
