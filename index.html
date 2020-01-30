@@ -1,28 +1,24 @@
 <!DOCTYPE html>
-<meta charset="utf-8">
-<base target="_blank">
-
-
-<title>Camera Test</title>
-
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8">
+  <base target="_blank">
+  <title>Camera Test</title>
 </head>
 
 <body>
+  <div id="container">
+    <div class="select">
+      <label for="videoSource">Video source: </label><select id="videoSource"></select>
+    </div>
+    <video autoplay muted playsinline></video>
 
-<div id="container">
+    <script async src="js/main.js"></script>
 
-  <div class="select">
-    <label for="videoSource">Video source: </label><select id="videoSource"></select>
   </div>
-
-  <video autoplay muted playsinline></video>
-
-  <script async src="js/main.js"></script>
-
-</div>
-<div>
-  Capture: <input type="file" name="video" accept="video/*" capture>
-  No Capture: <input type="file" name="video_no_capture" accept="video/*">
-</div>
+  <div>
+    <label for="video">Capture Video: </label><input type="file" name="video" accept="video/*" capture>
+    <label for="video_no_capture">Upload Video: </label><input type="file" name="video_no_capture" accept="video/*">
+  </div>
 </body>
 </html>
