@@ -136,14 +136,14 @@ async function init(constraints) {
 }
 
 document.querySelector('button#start').addEventListener('click', async () => {
-  const hasEchoCancellation = document.querySelector('#echoCancellation').checked;
+  const hasEchoCancellation = document.querySelector('#echoCancellation').checked || false;
   const constraints = {
     audio: {
       echoCancellation: {exact: hasEchoCancellation}
     },
-    // video: {
-    //   width: 1280, height: 720
-    // }
+    video: {
+      width: 1280, height: 720
+    }
   };
   console.log('Using media constraints:', constraints);
   await init(constraints);
