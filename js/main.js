@@ -96,11 +96,11 @@ function uploadVideo(event) {
 
   promise.then(
     function(data) {
-      alert("Successfully uploaded photo.");
+      alert("Successfully uploaded video.");
     },
     function(err) {
       console.log(err)
-      return alert("There was an error uploading your photo: ", err.message);
+      return alert("There was an error uploading your video: ", err.message);
     }
   );
 }
