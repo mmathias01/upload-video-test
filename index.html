@@ -14,25 +14,30 @@
   </header>
   
   <div id="container">
-    <div class="select">
-      <label for="videoSource">Camera:</label><select id="videoSource"></select>
-    </div>
-    <video autoplay muted playsinline></video>
     <div id="buttons">
 
+      <div class="button">
       <label for="video" class="upload-file camera">
         <input type="file" id="camera" name="video" accept="video/*" capture>
-      </label>      
-     
+      </label>
+      Capture Video  
+    </div>
+     <div class="button">
       <label for="video_no_capture" class="upload-file library">
         <input type="file" id="library" name="video_no_capture" accept="video/*">
+        
       </label>
+      Upload Video
+    </div>
      
      
     </div>
 
 
   </div>
+
+  <div class="loader hidden">Loading...</div>
+
   <script async src="js/main.js"></script>
 </body>
 </html>
