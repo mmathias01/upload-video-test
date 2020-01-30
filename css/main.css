@@ -70,7 +70,7 @@ select {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    width: 300px;
+    max-width: 300px;
 }
 
 input[type="file"] {
